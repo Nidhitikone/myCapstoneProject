@@ -7,9 +7,10 @@ import {
   View, 
   StyleSheet,  
   TextInput,
-  Button,
+ 
   ActivityIndicator,
-  Alert
+  Alert,
+  TouchableOpacity
  } from "react-native";
 
 const Login = ({navigation}) => {
@@ -62,11 +63,14 @@ const Login = ({navigation}) => {
         maxLength={15}
         secureTextEntry={true}
       />   
-      <Button
-        color="#000000"
-        title="Sign in"
+        
+      <TouchableOpacity
+        style={styles.button}
         onPress={() => userLogin()}
-      />   
+       
+      >
+        <Text style={styles.buttonText}>Sign In</Text>
+      </TouchableOpacity>
       <Text 
         style={styles.loginText}
         onPress={() => navigation.navigate('SignUp')}>
@@ -86,28 +90,33 @@ const Login = ({navigation}) => {
     backgroundColor: '#fff'
   },
   inputStyle: {
-    width: '100%',
-    marginBottom: 15,
-    paddingBottom: 15,
-    alignSelf: "center",
+    width: "100%",
+    height: 40,
+    borderWidth: 1,
     borderColor: "#ccc",
-    borderBottomWidth: 1
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
   },
   loginText: {
     color: '#000000',
     marginTop: 25,
     textAlign: 'center'
   },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff'
-  }
+  button: {
+    backgroundColor: "#58808F",
+    borderRadius: 5,
+    padding: 10,
+    width: "100%",
+    alignItems: "center",
+    color:"#58808F"
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight:"bold"
+  },
+  
 });
 
  export default Login;

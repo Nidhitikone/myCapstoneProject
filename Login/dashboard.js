@@ -5,20 +5,14 @@ import {
   signOut,
   
 } from "../firebase-config";
-import { 
-  Text, 
-  View, 
-  StyleSheet,  
-  Button,
- 
- } from "react-native";
+
 
 import ExploreScreen from '../Navigation/map';
-import ChatScreen from '../Navigation/chat';
+
 import FeedScreen from '../Navigation/feed';
 import AdoptScreen from '../Navigation/adopt';
-import AccountScreen from '../Navigation/account';
-import AddFeedScreen from '../Navigation/add Feed';
+import CostScreen from '../Navigation/cost';
+
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 
@@ -27,7 +21,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import DogsScreen from '../Navigation/dogs';
+
+import AdoptionForm from '../Navigation/adoptionForm';
 
 
 
@@ -57,9 +52,11 @@ const Dashboard = ({navigation}) => {
         <Tab.Navigator
       initialRouteName=""
       screenOptions={{
-        tabBarActiveTintColor: 'black',
+        tabBarActiveTintColor: '#58808F',
         headerShown:false,
+        
       }}
+      
     >
       
   <Tab.Screen
@@ -84,26 +81,15 @@ const Dashboard = ({navigation}) => {
       
     }} />
   
-  <Tab.Screen name='Chat' component={ChatScreen }
+  <Tab.Screen name='Chat' component={AdoptionForm}
   options={{
-    tabBarLabel: 'Chat',
+    tabBarLabel: 'Adoption Form',
     tabBarIcon: ({ color, size }) => (
-      <MaterialCommunityIcons name="chat" color={color} size={30}/>
+      <MaterialCommunityIcons name="clipboard-list" color={color} size={30}/>
     ),
 
   }}></Tab.Screen>
-        {/* <Tab.Screen
-        name="Add Feed"
-        component={AddFeedScreen}
-        
-        options={{
-            
-          tabBarLabel: '',
-          tabBarIcon: ({ color,size}) => (
-            <MaterialCommunityIcons name="plus-thick" color={color} size={30} />
-          ),
-        }}
-      /> */}
+       
       <Tab.Screen
 
         name='Explore'
@@ -117,7 +103,7 @@ const Dashboard = ({navigation}) => {
       />
       <Tab.Screen
         name="Account"
-        component={AccountScreen}
+        component={CostScreen}
         options={{
           tabBarLabel: 'Cost',
           tabBarIcon: ({ color, size }) => (
@@ -130,34 +116,4 @@ const Dashboard = ({navigation}) => {
     
         )}
     
-//  const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     paddingTop: 12
-//   },
-//   contentContainerStyle: {
-//     padding: 24
-//   },
-//   textInput: {
-//     borderWidth: 1,
-//     borderColor: '#afafaf',
-//     borderRadius: 5,
-//     paddingHorizontal: 10,
-//     marginVertical: 20,
-//     fontSize: 20,
-//   },
-//   bonsaiItem: {
-//     flexDirection: 'row',
-//     marginVertical: 10,
-//     alignItems: 'center'
-//   },
-//   bonsaiText: {
-//     paddingHorizontal: 5,
-//     fontSize: 16
-//   },
-//   upload: {
-//     marginBottom: 5
-//   }
-// });
-
  export default Dashboard;

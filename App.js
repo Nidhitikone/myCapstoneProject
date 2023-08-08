@@ -1,6 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+
 
 import Dashboard from './Login/dashboard';
 import Signup from './Login/signup';
@@ -18,19 +16,20 @@ const MyStack = () => {
       screenOptions={{
         headerTitleAlign: 'center',
         headerStyle: {
-          backgroundColor: 'black',
+          backgroundColor: '#466672',
         },
-        headerTintColor: '#fff',
+        headerTintColor: 'white',
         headerTitleStyle: {
           fontWeight: 'bold',
+          
         },
       }}>
-      <Stack.Screen 
+        <Stack.Screen 
         name="Signup" 
         component={Signup} 
         options={{ title: 'Signup' }}
-      />       
-      <Stack.Screen 
+      />  
+        <Stack.Screen 
         name="Login" 
         component={Login} 
         options={
@@ -38,11 +37,13 @@ const MyStack = () => {
           headerLeft: null}
         }
       />
+           
+      
        <Stack.Screen 
        name="Dashboard" 
        component={Dashboard} 
        options={
-         { title: 'Dashboard',
+         { title: 'Pet Paws',
          headerLeft: null}
        }
       /> 

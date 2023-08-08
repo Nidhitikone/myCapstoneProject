@@ -7,7 +7,8 @@ import {
   TextInput,
   Button,
   Alert,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableOpacity
  } from "react-native";
 
  import {
@@ -81,11 +82,14 @@ const Signup = ({navigation}) => {
         maxLength={15}
         secureTextEntry={true}
       />   
-      <Button
-        color="#000000"
-        title="Signup"
+      
+      <TouchableOpacity
+        style={styles.button}
         onPress={() => registerUser()}
-      />
+       
+      >
+        <Text style={styles.buttonText}>Sign Up</Text>
+      </TouchableOpacity>
       <Text 
         style={styles.loginText}
         onPress={() => navigation.navigate('Login')}>
@@ -105,12 +109,13 @@ const Signup = ({navigation}) => {
       backgroundColor: '#fff'
     },
     inputStyle: {
-      width: '100%',
-      marginBottom: 15,
-      paddingBottom: 15,
-      alignSelf: "center",
-      borderColor: "#ccc",
-      borderBottomWidth: 1
+      width: "100%",
+    height: 40,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
     },
     loginText: {
       color:'#000000',
@@ -126,7 +131,20 @@ const Signup = ({navigation}) => {
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: '#fff'
-    }
+    },
+    button: {
+      backgroundColor: "#58808F",
+      borderRadius: 5,
+      padding: 10,
+      width: "100%",
+      alignItems: "center",
+      color:"#58808F"
+    },
+    buttonText: {
+      color: "white",
+      fontSize: 16,
+      fontWeight:"bold"
+    },
   });
 
 export default Signup;

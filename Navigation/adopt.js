@@ -1,14 +1,8 @@
 import React, { Component,useEffect,useState } from "react";
-import { Button, View, Text,FlatList,StyleSheet, TouchableOpacity,Image } from "react-native";
+import { Button, View, Text,FlatList,StyleSheet, TouchableOpacity,Image,Modal } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ActivityIndicator, Card } from "react-native-paper";
-import DogsScreen from "./dogs";
-import CatsScreen from "./cats";
- import { NavigationContainer } from '@react-navigation/native';
-  import { createStackNavigator } from '@react-navigation/stack';
-import { Navigation } from "react-native-navigation";
-import ReviewPets from "./reviewpets";
-import { ScrollView } from "react-native";
+import CollapsibleCard from "./collapsibleCard";
 
 export default function AdoptScreen() {
   const [data,setData]=useState([]);
@@ -32,51 +26,48 @@ export default function AdoptScreen() {
       setAge(json.age);
       setName(json.name);
       setVaccinated(json.vaccinated);
-      setspayedNuetured(json.spayedNeutered);
+      setspayedNuetured(json.spayedNuetered);
     } )
     .catch((error)=>alert(error))
     .finally(()=> setLoading(false));
  },[]);
 
-
+ const [isModalVisible, setModalVisible] = useState(false);
+ const toggleModal = () => {
+  setModalVisible(!isModalVisible);
+};
 
  return (
+  
   <SafeAreaView style={styles.container}>
     {loading ? (
       <ActivityIndicator/>
     ) :(
       <View >
-      
         
-      <FlatList data={data} horizontal={true} keyExtractor={({id},index)=>id}
+
+        
+      <FlatList data={data} horizontal={false} keyExtractor={({id},index)=>id}
       renderItem={({item})=>{
         return(
           <View style={{padding:10}}>
-<TouchableOpacity >
-            {/* <TouchableOpacity onPress={()=>navigator.navigate('ReviewPets',item)}> */}
-            <Card style={styles.Card} mode="elevated">
-              <Card.Actions>
-                
-                {/* <Modal>
-                  <Text>HI there</Text>
-                </Modal> */}
-              </Card.Actions> 
-              <Card.Cover source={{ uri: `${item.image}` }}style={{ width: 350, height: 300 }}>
-               
-              </Card.Cover>
+            
+
+      <CollapsibleCard 
+        
+          name={item.name}
+          imagesrc={{uri: `${item.image}`}}
+          description={item.description}
+          age={item.age}
+          sex={item.sex}
+          vaccinated={item.vaccinated}
+          spayed={item.spayedNeutered}
+          
+        />
+        
              
-            {/* <Image style={{ width: "100%", height: 200 }} 
-      source={{ uri: `${item.url}` }} /> */}
-      <Card.Content><Text style={styles.description}>{item.name}</Text>
-      <Text>Sex {item.sex}</Text>
-      <Text>Age {item.age}</Text>
-      <Text>Spayed/Neutered? {item.spayedNuetured}</Text>
-      <Text>vaccinated? {item.vaccinated}</Text>
-      </Card.Content>
-      
-      </Card>
-      {/* </TouchableOpacity> */}
-      </TouchableOpacity>
+   
+  
           </View>
           
           
@@ -103,7 +94,7 @@ export default function AdoptScreen() {
          marginVertical: 10
       },
       description: {
-        textAlign: "center",
+        textAlign: "justify",
         fontWeight: "500",
         fontSize:30,
         color: "black",
@@ -131,14 +122,18 @@ export default function AdoptScreen() {
       },
       Card:{
         elevation:30,
-        padding:10,
+       
         width:"100%",
         height:"90%",
       
        borderRadius:20,
-      //  horizontal:true,
-       backgroundColor:"#b8e2f2",
+       backgroundColor:"",
        
       },
-      
+      modalContainer: {
+        backgroundColor: 'white',
+        padding: 20,
+        borderRadius: 8,
+        alignItems: 'center',
+      },
     })
