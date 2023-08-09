@@ -31,7 +31,7 @@ return(
     onPlaceSelected(details);
   }}
   query={{
-    key:'AIzaSyDLwX70RDDezLD18ekaPf4PmC8qJLFBEw4',
+    key:'KEY',
     language:'en',
   }}
   /> 
@@ -274,7 +274,7 @@ export default function ExploreScreen() {
           <MapViewDirections
             origin={origin}
             destination={destination}
-            apikey={'AIzaSyDLwX70RDDezLD18ekaPf4PmC8qJLFBEw4'}
+            apikey={'KEY'}
             strokeColor="darkblue"
             strokeWidth={6}
             onReady={traceRouteOnReady}
